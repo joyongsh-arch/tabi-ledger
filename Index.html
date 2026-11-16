@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Tabi Ledger</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tabi Ledger">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F4ECE9">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<style>
+  html, body { margin: 0; height: 100%; background: #F4ECE9; overflow: hidden; }
+  #app {
+    position: fixed;
+    top: env(safe-area-inset-top); left: 0; right: 0;
+    bottom: env(safe-area-inset-bottom);
+    width: 100%; height: calc(100% - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    border: 0; display: block;
+  }
+  /* strip under the home bar matches the app's bottom menu */
+  #foot { position: fixed; left: 0; right: 0; bottom: 0; height: env(safe-area-inset-bottom); background: #FBF7F5; }
+  #msg { display: none; font-family: -apple-system, system-ui, sans-serif; color: #5E4B48; padding: 40px 28px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<iframe id="app" title="Tabi Ledger" allow="camera; clipboard-write"></iframe>
+<div id="foot"></div>
+<div id="msg">App link missing.</div>
+<script>
+  // ▼ Paste your Apps Script web app link (ends in /exec) between the quotes
+  var APP_URL = 'https://script.google.com/macros/s/AKfycbzCn4T1Bdf1koYP33S1r9_5Oh_2auPYFf-swgQR_7HbR5aaRVaUe84Z7ayH8ZINRu_Mig/exec';
+
+  if (APP_URL.indexOf('/exec') < 0) {
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('msg').style.display = 'block';
+  } else {
+    // Pass ?view=1 through, so the same GitHub link works as the family's view-only link
+    var view = /[?&]view=1\b/.test(location.search);
+    document.getElementById('app').src = APP_URL + (view ? (APP_URL.indexOf('?') < 0 ? '?' : '&') + 'view=1' : '');
+  }
+</script>
+</body>
+</html>
